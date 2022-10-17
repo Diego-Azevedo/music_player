@@ -1,4 +1,5 @@
-from view.tela_inicial import TelaInicial
+
+from view.tela_sistema import TelaInicial
 from controlador.controlador_artista import ControladorArtista
 
 class ControladorSistema:

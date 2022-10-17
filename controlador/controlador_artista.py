@@ -1,4 +1,3 @@
-import string
 from view.tela_artista import TelaArtista
 from entidade.artista import Artista
 
@@ -9,7 +8,7 @@ class ControladorArtista():
         self.__tela_artista = TelaArtista()
         self.__controlador_sistema = controlador_sistema
 
-    def pega_artista_por_nome(self, nome: string):
+    def pega_artista_por_nome(self, nome: str):
         for artista in self.__artistas:
             if(artista.nome == nome):
                 return artista
