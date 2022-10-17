@@ -1,4 +1,8 @@
-class TelaArtista:
+from view.tela_abstrata import TelaAbstrata
+
+
+class TelaArtista(TelaAbstrata):
+
     def tela_opcoes(self):
         print("____Artista____")
         print("Escolha uma opcao")
