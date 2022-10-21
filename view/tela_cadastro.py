@@ -6,7 +6,7 @@ class TelaCadastro():
         print("2 - Cadastrar Música")
         print("3 - Alterar Música")
         print("4 - Excluir Música")
-        print("5 - Retornar")
+        print("0 - Retornar")
 
         opcao = int(input("Escolha a opcao:"))
         return opcao

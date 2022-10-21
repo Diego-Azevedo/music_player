@@ -17,7 +17,8 @@ class ControladorCadastro():
     #mostra a lista de músicas cadastradas
     def ver_musica(self):
         for musica in self.__musicas:
-            self.__tela_cadastro.mostra_musica({"nome": musica.nome, "artista": musica.artista, "genero": musica.genero, "tempo": musica.tempo })
+            self.__tela_cadastro.mostra_musica({"nome": musica.nome, "artista": musica.artista,
+             "genero": musica.genero, "tempo": musica.tempo })
 
     def incluir_musica(self):
      dados_musica = self.__tela_cadastro.pega_dados_musica()
