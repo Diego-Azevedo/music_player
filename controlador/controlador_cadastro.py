@@ -4,7 +4,7 @@ from view.tela_cadastro import TelaCadastro
 class ControladorCadastro():
 
     def __init__(self, controlador_sistema):
-            self.__musicas = []
+            self.__musicas = [musica0, musica1, musica2, musica3, musica4]
             self.__tela_cadastro = TelaCadastro()
             self.__controlador_sistema = controlador_sistema
 
@@ -61,4 +61,12 @@ class ControladorCadastro():
 
         continua = True
         while continua:
+            print()
             lista_opcoes[self.__tela_cadastro.tela_opcoes()]()
+
+#Musicas pré cadastradas
+musica0 = Musica("TôBem", "Djonga", "Rap", 3.21)
+musica1 = Musica("Hey Baby", "Stephen Marley", "Reggae", 4.54)
+musica2 = Musica("You And Me", "Soja", "Reggae", 4.50)
+musica3 = Musica("November Rain", "Guns N Roses", "Rock", 8.10)
+musica4 = Musica("505", "Arctic Monkeys", "Rock", 4.13)

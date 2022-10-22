@@ -7,8 +7,8 @@ class TelaCadastro():
         print("3 - Alterar Música")
         print("4 - Excluir Música")
         print("0 - Retornar")
-
         opcao = int(input("Escolha a opcao:"))
+        print()
         return opcao
 
     def pega_dados_musica(self):

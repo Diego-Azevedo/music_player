@@ -7,4 +7,5 @@ class TelaPlayer(TelaAbstrata):
         print("2 - Tocar Música Aleatória")
         print("0 - Voltar")
         opcao = int(input("Escolha a Opção: "))
+        print()
         return opcao
