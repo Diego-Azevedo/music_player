@@ -1,6 +1,6 @@
 class TelaCadastro():
     def tela_opcoes(self):
-        print("____Música____")
+        print("____MÚSICA____")
         print("Escolha a opção:")
         print("1 - Listar Música")
         print("2 - Cadastrar Música")
@@ -12,11 +12,12 @@ class TelaCadastro():
         return opcao
 
     def pega_dados_musica(self):
-        print("-------- CADASTRO DE MÚSICA ----------")
+        print("-------- CADASTRO DE MÚSICA --------")
         nome = input("Nome: ")
         artista = input("Artista: ")
         genero = input("Genero: ")
         tempo = input("Tempo: ")
+        print()
 
         return {"nome": nome, "artista": artista, "genero": genero, "tempo": tempo}
 
@@ -26,7 +27,7 @@ class TelaCadastro():
         print("ARTISTA: ", dados_musica["artista"])
         print("GENERO MUSICAL: ", dados_musica["genero"]) 
         print("TEMPO: ", dados_musica["tempo"])
-        print("\n")
+        print()
 
     def mostra_nome_musica(self, nome):
         print("MÚSICA:", nome["nome"])
@@ -38,3 +39,6 @@ class TelaCadastro():
     def seleciona_musica(self):
         nome = input("Nome da música que deseja selecionar: ")
         return nome
+
+    def quebra_linha(self):
+        print()    

@@ -9,4 +9,5 @@ class TelaInicial(TelaAbstrata):
         print("3 - [EM BREVE]")
         print("0 - Sair")
         opcao = int(input("Escolha a opcao:"))
+        print()
         return opcao

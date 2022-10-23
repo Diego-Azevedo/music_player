@@ -7,12 +7,18 @@ class ControladorPlayer:
 
 
     def tocar_musica_aleatoria(self):
-        musica_aleatoria = self.__controlador_sistema.controlador_cadastro.retornar_musica_aleatoria()
+        musica_aleatoria = self.__controlador_sistema.controlador_cadastro.retorna_musica_aleatoria()
         self.__tela_player.mostra_musica(musica_aleatoria)
 
 
     def escolher_musica(self):
-        print("[Erro, essa parte ainda não existe]")
+        lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_musicas()
+        self.__tela_player.print_escolher_musica()
+        for index, item in enumerate(lista_musicas):
+            self.__tela_player.escolhe_musica(index, item)
+        opcao_escolhida = self.__tela_player.escolhe_opcao()       
+        self.__tela_player.quebra_linha()
+        self.__tela_player.mostra_musica(lista_musicas[opcao_escolhida])    
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()

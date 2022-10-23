@@ -62,15 +62,20 @@ class ControladorCadastro():
 
         continua = True
         while continua:
-            print()
             lista_opcoes[self.__tela_cadastro.tela_opcoes()]()
 
-    def retornar_musica_aleatoria(self):
+    def retorna_musica_aleatoria(self):
         musica_aleatoria = random.choice(self.__musicas)
-        return {"nome": musica_aleatoria.nome}
+        return {"nome": musica_aleatoria.nome, "artista": musica_aleatoria.artista}
+
+    def retorna_musicas(self):
+        lista_musicas = []
+        for musica in self.__musicas:
+            lista_musicas.append({"nome": musica.nome, "artista": musica.artista})
+        return lista_musicas       
         
 
-#Musicas pré cadastradas
+#Musicas cadastradas
 musica0 = Musica("TôBem", "Djonga", "Rap", 3.21)
 musica1 = Musica("Hey Baby", "Stephen Marley", "Reggae", 4.54)
 musica2 = Musica("You And Me", "Soja", "Reggae", 4.50)
