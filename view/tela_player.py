@@ -9,3 +9,11 @@ class TelaPlayer(TelaAbstrata):
         opcao = int(input("Escolha a Opção: "))
         print()
         return opcao
+
+    def mostra_musica(self, nome):
+        print("____TOCANDO____")
+        print("MÚSICA:", nome["nome"])
+        print()
+        
+    
+    

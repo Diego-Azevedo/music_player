@@ -28,6 +28,10 @@ class TelaCadastro():
         print("TEMPO: ", dados_musica["tempo"])
         print("\n")
 
+    def mostra_nome_musica(self, nome):
+        print("MÚSICA:", nome["nome"])
+        print()    
+
     def mostra_mensagem(self, msg):
         print(msg)
 

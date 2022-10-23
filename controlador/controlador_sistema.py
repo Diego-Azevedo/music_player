@@ -11,7 +11,7 @@ class ControladorSistema:
         self.__controlador_player = ControladorPlayer(self)
 
     @property
-    def controlador_artista(self):
+    def controlador_cadastro(self):
         return self.__controlador_cadastro
 
     @property

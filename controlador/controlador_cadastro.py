@@ -1,5 +1,6 @@
 from entidade.musica import Musica
 from view.tela_cadastro import TelaCadastro
+import random
 
 class ControladorCadastro():
 
@@ -63,6 +64,11 @@ class ControladorCadastro():
         while continua:
             print()
             lista_opcoes[self.__tela_cadastro.tela_opcoes()]()
+
+    def retornar_musica_aleatoria(self):
+        musica_aleatoria = random.choice(self.__musicas)
+        return {"nome": musica_aleatoria.nome}
+        
 
 #Musicas pré cadastradas
 musica0 = Musica("TôBem", "Djonga", "Rap", 3.21)

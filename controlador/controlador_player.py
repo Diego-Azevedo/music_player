@@ -1,16 +1,15 @@
 from view.tela_player import TelaPlayer
-from entidade.musica import Musica
-from controlador.controlador_cadastro import ControladorCadastro
 
 class ControladorPlayer:
     def __init__(self, controlador_sistema):
-        self.musicas = []
         self.__controlador_sistema = controlador_sistema
         self.__tela_player = TelaPlayer()
 
 
     def tocar_musica_aleatoria(self):
-        print("Uma música aleatória está tocando")
+        musica_aleatoria = self.__controlador_sistema.controlador_cadastro.retornar_musica_aleatoria()
+        self.__tela_player.mostra_musica(musica_aleatoria)
+
 
     def escolher_musica(self):
         print("[Erro, essa parte ainda não existe]")
