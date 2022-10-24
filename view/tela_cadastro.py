@@ -12,7 +12,6 @@ class TelaCadastro():
         return opcao
 
     def pega_dados_musica(self):
-        print("-------- CADASTRO DE MÚSICA --------")
         nome = input("Nome: ")
         artista = input("Artista: ")
         genero = input("Genero: ")
