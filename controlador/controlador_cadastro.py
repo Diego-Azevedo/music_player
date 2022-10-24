@@ -42,16 +42,16 @@ class ControladorCadastro():
         else:
             self.__tela_cadastro.mostra_mensagem("Música não existe")
 
+    #TRATAR EXCEÇÃO
     def excluir_musica(self):
+        self.__tela_cadastro.mostra_mensagem("--------EXCLUIR MÚSICA--------")
         self.ver_musica()
-        nome_musica = self.__tela_cadastro.seleciona_musica()
-        musica = self.pega_musica_por_nome(nome_musica)
-
-        if(musica is not None):
-            self.__musicas.remove(musica)
-            self.ver_musica()
-        else:
-            self.__tela_cadastro.mostra_mensagem("Música não existe")
+        nome_musica = self.__tela_cadastro.exclui_musica()
+        for index, indice in enumerate(self.__musicas):
+            if indice.nome == nome_musica:
+                self.__musicas.pop(index)
+                self.__tela_cadastro.mostra_mensagem("MÚSICA EXCLUÍDA!")
+                self.__tela_cadastro.quebra_linha()
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()

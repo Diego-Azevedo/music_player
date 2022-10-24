@@ -36,8 +36,8 @@ class TelaCadastro():
     def mostra_mensagem(self, msg):
         print(msg)
 
-    def seleciona_musica(self):
-        nome = input("Nome da música que deseja selecionar: ")
+    def exclui_musica(self):
+        nome = input("Nome da música que deseja excluir: ")
         return nome
 
     def quebra_linha(self):
