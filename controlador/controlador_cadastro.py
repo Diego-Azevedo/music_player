@@ -27,20 +27,38 @@ class ControladorCadastro():
      self.__musicas.append(musica)
 
     def editar_musica(self):
+        self.__tela_cadastro.mostra_mensagem("--------EDITAR MÚSICA--------")
         self.ver_musica()
-        nome_musica = self.__tela_cadastro.seleciona_musica()
+        nome_musica = self.__tela_cadastro.edita_musica()
+        #aqui
         musica = self.pega_musica_por_nome(nome_musica)
-
         if(musica is not None):
             novos_dados_musica = self.__tela_cadastro.pega_dados_musica()
             musica.nome = novos_dados_musica["nome"]
             musica.artista = novos_dados_musica["artista"]
             musica.genero = novos_dados_musica["genero"]
             musica.tempo = novos_dados_musica["tempo"]
-
             self.ver_musica()
+                
         else:
             self.__tela_cadastro.mostra_mensagem("Música não existe")
+
+        '''nome_musica = self.__tela_cadastro.edita_musica()
+        musica = self.pega_musica_por_nome(nome_musica)
+        for index, indice in enumerate(self.__musicas):
+            if indice.nome == nome_musica:
+                novos_dados_musica = self.__tela_cadastro.pega_dados_musica()
+                musica.nome = novos_dados_musica["nome"]
+                musica.artista = novos_dados_musica["artista"]
+                musica.genero = novos_dados_musica["genero"]
+                musica.tempo = novos_dados_musica["tempo"]
+
+                self.ver_musica(index)
+                self.__tela_cadastro.mostra_mensagem("MÚSICA EXCLUÍDA!")
+                self.__tela_cadastro.quebra_linha()
+        else:
+            self.__tela_cadastro.mostra_mensagem("Música não existe")'''
+            
 
     #TRATAR EXCEÇÃO
     def excluir_musica(self):

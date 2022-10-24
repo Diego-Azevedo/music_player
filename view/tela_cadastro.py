@@ -40,5 +40,9 @@ class TelaCadastro():
         nome = input("Nome da música que deseja excluir: ")
         return nome
 
+    def edita_musica(self):
+        nome = input("Nome da música que deseja editar: ")
+        return nome
+
     def quebra_linha(self):
         print()    
