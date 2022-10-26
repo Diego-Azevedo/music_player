@@ -1,4 +1,6 @@
-class TelaCadastro():
+from view.tela_abstrata import TelaAbstrata
+
+class TelaCadastro(TelaAbstrata):
     def tela_opcoes(self):
         print("____MÚSICA____")
         print("Escolha a opção:")
@@ -32,9 +34,6 @@ class TelaCadastro():
         print("MÚSICA:", nome["nome"])
         print()    
 
-    def mostra_mensagem(self, msg):
-        print(msg)
-
     def exclui_musica(self):
         nome = input("Nome da música que deseja excluir: ")
         return nome
@@ -43,5 +42,4 @@ class TelaCadastro():
         nome = input("Nome da música que deseja editar: ")
         return nome
 
-    def quebra_linha(self):
-        print()    
+    

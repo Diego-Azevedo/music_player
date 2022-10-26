@@ -14,19 +14,19 @@ class ControladorPlayer:
 
     def escolher_musica(self):
         lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_musicas()
-        self.__tela_player.print_escolher_musica()
+        self.__tela_player.mostra_mensagem("--------ESCOLHER MÚSICA--------")
         for index, item in enumerate(lista_musicas):
             self.__tela_player.dados_musica(index, item)
         opcao_escolhida = self.__tela_player.escolhe_opcao()       
         self.__tela_player.quebra_linha()
-        self.__tela_player.print_tocando()
+        self.__tela_player.mostra_mensagem("--------TOCANDO--------")
         self.__tela_player.mostra_musica(lista_musicas[opcao_escolhida])
         self.__musicas_tocadas.append(lista_musicas[opcao_escolhida])
         self.abre_tela_player()            
 
     def tocar_musica_aleatoria(self):
         musica_aleatoria = self.__controlador_sistema.controlador_cadastro.retorna_musica_aleatoria()
-        self.__tela_player.print_tocando()
+        self.__tela_player.mostra_mensagem("--------TOCANDO--------")
         self.__tela_player.mostra_musica(musica_aleatoria)
         self.__musicas_tocadas.append(musica_aleatoria)
         self.abre_tela_player()
@@ -48,14 +48,14 @@ class ControladorPlayer:
                 n = index
         if n == (len(lista_musicas) - 1):
             n = 0
-        self.__tela_player.print_tocando()        
+        self.__tela_player.mostra_mensagem("--------TOCANDO--------")        
         self.__tela_player.mostra_musica(lista_musicas[n+1])
         self.__musicas_tocadas.append(lista_musicas[n+1])        
 
     def pausar_musica(self):
         musica_atual = self.__musicas_tocadas[-1]
         self.__tela_player.pausar_musica()
-        self.__tela_player.print_tocando()
+        self.__tela_player.mostra_mensagem("--------TOCANDO--------")
         self.__tela_player.mostra_musica(musica_atual)
 
     def voltar_musica(self):
@@ -66,6 +66,6 @@ class ControladorPlayer:
                 n = index
         if n == 0:
             n = len(lista_musicas)
-        self.__tela_player.print_tocando()        
+        self.__tela_player.mostra_mensagem("--------TOCANDO--------")        
         self.__tela_player.mostra_musica(lista_musicas[n-1])
         self.__musicas_tocadas.append(lista_musicas[n-1])                    

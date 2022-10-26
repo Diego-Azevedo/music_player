@@ -38,9 +38,10 @@ class ControladorCadastro():
                 indice.artista = novos_dados_musica["artista"]
                 indice.genero = novos_dados_musica["genero"]
                 indice.tempo = novos_dados_musica["tempo"]
-                self.__tela_cadastro.mostra_mensagem("MÚSICA EDITADA COM SUCESSO!") 
-        else:
-            self.__tela_cadastro.mostra_mensagem("Música não existe")
+                self.__tela_cadastro.mostra_mensagem("MÚSICA EDITADA COM SUCESSO!")
+                ####CORRIGIR ELSE#### 
+            #else:
+            #   self.__tela_cadastro.mostra_mensagem("Música não existe")
      
     #TRATAR EXCEÇÃO
     def excluir_musica(self):

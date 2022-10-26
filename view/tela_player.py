@@ -18,10 +18,7 @@ class TelaPlayer(TelaAbstrata):
         print("0 - Sair")
         opcao2 = int(input("Escolha a Opção: "))
         print()
-        return opcao2
-
-    def print_tocando(self):
-        print("--------TOCANDO--------")            
+        return opcao2           
 
     def mostra_musica(self, nome):
         print("MÚSICA:", nome["nome"], "-", nome["artista"])
@@ -37,13 +34,8 @@ class TelaPlayer(TelaAbstrata):
     def pausar_musica(self):
         print("--------MÚSICA PAUSADA--------")
         input("Clique para continuar: ")
-        print()    
-
-    def print_escolher_musica(self):
-        print("--------ESCOLHER MÚSICA--------")        
-
-    def quebra_linha(self):
         print()
+
            
         
     
