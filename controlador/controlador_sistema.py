@@ -3,6 +3,7 @@ from view.tela_sistema import TelaInicial
 #from controlador.controlador_artista import ControladorArtista
 from controlador.controlador_cadastro import ControladorCadastro
 from controlador.controlador_player import ControladorPlayer
+from controlador.controlador_registro import ControladorRegistro
 
 class ControladorSistema:
     def __init__(self):
