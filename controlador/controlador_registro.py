@@ -50,12 +50,14 @@ class ControladorRegistro:
                 self.__tela_registro.mostra_mensagem("Playlist Salva!")
                 self.__tela_registro.quebra_linha()
                 break
-
         playlist = Playlist(nome_playlist, lista_posicoes)
         self.__play_list.append(playlist)      
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
+
+    def retorna_playlist(self):
+        return self.__play_list    
 
 
         

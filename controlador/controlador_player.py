@@ -9,7 +9,7 @@ class ControladorPlayer:
     def abre_tela(self):
         while True:
             lista_opcoes = {1: self.escolher_musica, 2: self.tocar_musica_aleatoria, 
-                            0: self.retornar}
+                            3: self.tocar_playlist, 0: self.retornar}
             lista_opcoes[self.__tela_player.tela_opcoes()]()
 
     def escolher_musica(self):
@@ -30,7 +30,21 @@ class ControladorPlayer:
         self.__tela_player.mostra_musica(musica_aleatoria)
         self.__musicas_tocadas.append(musica_aleatoria)
         self.abre_tela_player()
-    
+
+    def tocar_playlist(self):
+        play_list = self.__controlador_sistema.controlador_registro.retorna_playlist()
+        self.__tela_player.mostra_mensagem("--------ESCOLHER PLAYLIST--------")
+        if len(play_list) == 0:
+            self.__tela_player.mostra_mensagem("Crie uma Playlist Primeiro!")
+            self.__tela_player.quebra_linha()
+        else:    
+            for index, nome in enumerate(play_list):
+                self.__tela_player.dados_playlist(index, nome.nome)
+            opcao = self.__tela_player.escolhe_opcao()
+            self.__tela_player.quebra_linha()
+            self.__tela_player.mostra_mensagem("--------TOCANDO PLAYLIST--------")
+            self.__tela_player.quebra_linha()
+               
     def retornar(self):
         self.__controlador_sistema.abre_tela()
 

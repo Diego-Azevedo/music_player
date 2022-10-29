@@ -5,6 +5,7 @@ class TelaPlayer(TelaAbstrata):
         print("____PLAYER____")
         print("1 - Escolher Música")
         print("2 - Tocar Música Aleatória")
+        print("3 - Tocar Playlist")
         print("0 - Voltar")
         opcao = int(input("Escolha a Opção: "))
         print()
@@ -32,6 +33,9 @@ class TelaPlayer(TelaAbstrata):
         print("--------MÚSICA PAUSADA--------")
         input("Clique para continuar: ")
         print()
+
+    def dados_playlist(self, index, nome):
+        print(index, "-", nome)     
 
            
         
