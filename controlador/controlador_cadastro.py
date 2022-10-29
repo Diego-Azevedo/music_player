@@ -73,7 +73,10 @@ class ControladorCadastro():
         lista_musicas = []
         for musica in self.__musicas:
             lista_musicas.append({"nome": musica.nome, "artista": musica.artista})
-        return lista_musicas       
+        return lista_musicas
+
+    def retorna_objetos_musica(self):
+        return self.__musicas           
         
 
 #Musicas cadastradas
