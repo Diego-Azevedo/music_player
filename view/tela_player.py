@@ -24,9 +24,6 @@ class TelaPlayer(TelaAbstrata):
         print("MÚSICA:", nome["nome"], "-", nome["artista"])
         print()
 
-    def dados_musica(self, index, dados_musica):
-        print(index, "-", dados_musica["nome"], "-", dados_musica["artista"])
-
     def escolhe_opcao(self):
         opcao = int(input("Escolha a Opção: "))
         return opcao

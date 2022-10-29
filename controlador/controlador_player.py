@@ -68,4 +68,13 @@ class ControladorPlayer:
             n = len(lista_musicas)
         self.__tela_player.mostra_mensagem("--------TOCANDO--------")        
         self.__tela_player.mostra_musica(lista_musicas[n-1])
-        self.__musicas_tocadas.append(lista_musicas[n-1])                    
+        self.__musicas_tocadas.append(lista_musicas[n-1])
+
+    def retorna_musicas(self):
+        lista_musicas = []
+        for musica in self.__musicas_tocadas:
+            lista_musicas.append(musica)
+        return lista_musicas
+
+    def limpa_historico(self):
+        self.__musicas_tocadas.clear()                                 

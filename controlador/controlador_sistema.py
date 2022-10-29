@@ -10,6 +10,7 @@ class ControladorSistema:
         self.__tela_sistema = TelaInicial()
         self.__controlador_cadastro = ControladorCadastro(self)
         self.__controlador_player = ControladorPlayer(self)
+        self.__controlador_registro = ControladorRegistro(self)
 
     @property
     def controlador_cadastro(self):
@@ -28,14 +29,14 @@ class ControladorSistema:
     def player(self):
         self.__controlador_player.abre_tela()
 
-    def musica(self):
-        self.abre_tela
+    def registro(self):
+        self.__controlador_registro.abre_tela()
 
     def sair(self):
         exit(0)
 
     def abre_tela(self):
-        lista_opcoes = {1: self.cadastra_musica, 2: self.player, 3: self.musica,
+        lista_opcoes = {1: self.cadastra_musica, 2: self.player, 3: self.registro,
                         0: self.sair}
 
         while True:
