@@ -1,13 +1,27 @@
 from view.tela_abstrata import TelaAbstrata
 
 class TelaPlayer(TelaAbstrata):
+
+
+    def ler_opcao(self, mensagem: str = "", inteiros_validos: [] = None):
+        while True:
+            valor_lido = input(mensagem)
+            try:
+                inteiro = int(valor_lido)
+                if inteiros_validos and inteiro not in inteiros_validos:
+                    raise ValueError
+                return inteiro
+            except ValueError: 
+                print("Selecione uma opcao valida")
+
+
     def tela_opcoes(self):
         print("____PLAYER____")
         print("1 - Escolher Música")
         print("2 - Tocar Música Aleatória")
         print("3 - Tocar Playlist")
         print("0 - Voltar")
-        opcao = int(input("Escolha a Opção: "))
+        opcao = self.ler_opcao("Escolha a opcao: ", [0, 1, 2, 3])
         print()
         return opcao
 
@@ -17,7 +31,7 @@ class TelaPlayer(TelaAbstrata):
         print("2 - Passar Música")
         print("3 - Voltar Música")
         print("0 - Sair")
-        opcao2 = int(input("Escolha a Opção: "))
+        opcao2 = self.ler_opcao("Escolha a opcao: ", [0, 1, 2, 3])
         print()
         return opcao2           
 

@@ -53,6 +53,7 @@ class ControladorCadastro():
                 self.__musicas.pop(index)
                 self.__tela_cadastro.mostra_mensagem("MÚSICA EXCLUÍDA!")
                 self.__tela_cadastro.quebra_linha()
+            
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
