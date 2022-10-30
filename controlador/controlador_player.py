@@ -1,3 +1,4 @@
+from entidade.musica import Musica
 from view.tela_player import TelaPlayer
 
 class ControladorPlayer:
@@ -6,23 +7,42 @@ class ControladorPlayer:
         self.__musicas_tocadas = []
         self.__tela_player = TelaPlayer()
 
+
+
     def abre_tela(self):
         while True:
             lista_opcoes = {1: self.escolher_musica, 2: self.tocar_musica_aleatoria, 
                             3: self.tocar_playlist, 0: self.retornar}
             lista_opcoes[self.__tela_player.tela_opcoes()]()
 
+        
+    #__________________________________________________________________________________________________________________    
+    #MÚSICA A SER TOCADA
     def escolher_musica(self):
         lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_musicas()
         self.__tela_player.mostra_mensagem("--------ESCOLHER MÚSICA--------")
         for index, item in enumerate(lista_musicas):
             self.__tela_player.dados_musica(index, item)
-        opcao_escolhida = self.__tela_player.escolhe_opcao()       
-        self.__tela_player.quebra_linha()
-        self.__tela_player.mostra_mensagem("--------TOCANDO--------")
-        self.__tela_player.mostra_musica(lista_musicas[opcao_escolhida])
-        self.__musicas_tocadas.append(lista_musicas[opcao_escolhida])
-        self.abre_tela_player()            
+        opcao_escolhida = self.__tela_player.escolhe_opcao()     
+        '''
+        ------------------------------------------------------------------------------------
+        tratar as exceções relacionadas à letras  
+        ------------------------------------------------------------------------------------
+        '''
+        try:
+            if opcao_escolhida <= index:
+                
+                self.__tela_player.quebra_linha()
+                self.__tela_player.mostra_mensagem("--------TOCANDO--------")
+                self.__tela_player.mostra_musica(lista_musicas[opcao_escolhida])
+                self.__musicas_tocadas.append(lista_musicas[opcao_escolhida])
+                self.abre_tela_player()            
+            else:
+                
+                raise KeyError
+        except KeyError:
+            self.__tela_player.mostra_mensagem("Escolha uma música válida")
+        
 
     def tocar_musica_aleatoria(self):
         musica_aleatoria = self.__controlador_sistema.controlador_cadastro.retorna_musica_aleatoria()
