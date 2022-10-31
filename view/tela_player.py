@@ -33,7 +33,7 @@ class TelaPlayer(TelaAbstrata):
 
     def pausar_musica(self):
         print("--------MÚSICA PAUSADA--------")
-        input("Clique para continuar: ")
+        input("CLIQUE PARA CONTINUAR: ")
         print()
 
     def dados_playlist(self, index, nome):

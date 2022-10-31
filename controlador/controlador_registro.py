@@ -18,14 +18,14 @@ class ControladorRegistro:
         historico = self.__controlador_sistema.controlador_player.retorna_musicas()
         self.__tela_registro.mostra_mensagem("--------REGISTRO DO PLAYER--------")
         self.__tela_registro.quebra_linha()
-        self.__tela_registro.mostra_mensagem("Histórico:")
+        self.__tela_registro.mostra_mensagem("HISTÓRICO:")
         for index, item in enumerate(historico):
             self.__tela_registro.dados_musica(index, item)
         self.__tela_registro.quebra_linha() 
 
     def limpar_lista(self):
         self.__controlador_sistema.controlador_player.limpa_historico()
-        self.__tela_registro.mostra_mensagem("Histórico excluído!")
+        self.__tela_registro.mostra_mensagem("HISTÓRICO EXCLUÍDO! \n")
         self.__tela_registro.quebra_linha()
 
     def criar_playlist(self):
@@ -47,7 +47,7 @@ class ControladorRegistro:
             continuar = self.__tela_registro.continuar()
             if continuar == "0":
                 self.__tela_registro.quebra_linha()
-                self.__tela_registro.mostra_mensagem("Playlist Salva!")
+                self.__tela_registro.mostra_mensagem("PLAYLIST SALVA! \n")
                 self.__tela_registro.quebra_linha()
                 break
         playlist = Playlist(nome_playlist, lista_posicoes)
@@ -58,7 +58,3 @@ class ControladorRegistro:
 
     def retorna_playlist(self):
         return self.__play_list    
-
-
-        
-

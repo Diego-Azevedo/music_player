@@ -1,7 +1,7 @@
 from view.tela_abstrata import TelaAbstrata
 
 class TelaInicial(TelaAbstrata):
-    
+
     def tela_opcoes(self):
         print("____PlayerDeMusica____")
         print("Escolha uma opção")

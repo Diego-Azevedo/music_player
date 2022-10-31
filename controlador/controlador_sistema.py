@@ -25,10 +25,10 @@ class ControladorSistema:
 
     def inicializa_sistema(self):
         self.abre_tela()
-    
+
     def cadastra_musica(self):
         self.__controlador_cadastro.abre_tela()
-    
+
     def player(self):
         self.__controlador_player.abre_tela()
 

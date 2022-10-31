@@ -20,10 +20,8 @@ class TelaCadastro(TelaAbstrata):
         genero = input("Genero: ")
         tempo = input("Tempo: ")
         print()
-
         return {"nome": nome, "artista": artista, "genero": genero, "tempo": tempo}
-
-    # lembrar de fazer o tratamento de excessoes 
+ 
     def mostra_musica(self, dados_musica):
         print("MÚSICA: ", dados_musica["nome"])
         print("ARTISTA: ", dados_musica["artista"])
@@ -36,11 +34,9 @@ class TelaCadastro(TelaAbstrata):
         print()    
 
     def exclui_musica(self):
-        nome = input("Nome da música que deseja excluir: ")
+        nome = input("NOME DA MÚSICA QUE DESEJA EXCLUIR: ")
         return nome
 
     def edita_musica(self):
-        nome = input("Nome da música que deseja editar: ")
+        nome = input("NOME DA MÚSICA QUE DESEJA EDITAR: ")
         return nome
-
-    

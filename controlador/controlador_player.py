@@ -7,17 +7,12 @@ class ControladorPlayer:
         self.__musicas_tocadas = []
         self.__tela_player = TelaPlayer()
 
-
-
     def abre_tela(self):
         while True:
             lista_opcoes = {1: self.escolher_musica, 2: self.tocar_musica_aleatoria, 
                             3: self.tocar_playlist, 0: self.retornar}
             lista_opcoes[self.__tela_player.tela_opcoes()]()
 
-        
-    #__________________________________________________________________________________________________________________    
-    #MÚSICA A SER TOCADA
     def escolher_musica(self):
         lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_musicas()
         self.__tela_player.mostra_mensagem("--------ESCOLHER MÚSICA--------")
@@ -38,11 +33,10 @@ class ControladorPlayer:
                 self.__musicas_tocadas.append(lista_musicas[opcao_escolhida])
                 self.abre_tela_player()            
             else:
-                
+
                 raise KeyError
         except KeyError:
-            self.__tela_player.mostra_mensagem("Escolha uma música válida")
-        
+            self.__tela_player.mostra_mensagem("ESCOLHA UMA MÚSICA VÁLIDA \n")
 
     def tocar_musica_aleatoria(self):
         musica_aleatoria = self.__controlador_sistema.controlador_cadastro.retorna_musica_aleatoria()
@@ -55,7 +49,7 @@ class ControladorPlayer:
         play_list = self.__controlador_sistema.controlador_registro.retorna_playlist()
         self.__tela_player.mostra_mensagem("--------ESCOLHER PLAYLIST--------")
         if len(play_list) == 0:
-            self.__tela_player.mostra_mensagem("Crie uma Playlist Primeiro!")
+            self.__tela_player.mostra_mensagem("CRIE UMA PLAYLIST PRIMEIRO! \n")
             self.__tela_player.quebra_linha()
         else:    
             for index, nome in enumerate(play_list):
@@ -64,7 +58,7 @@ class ControladorPlayer:
             self.__tela_player.quebra_linha()
             self.__tela_player.mostra_mensagem("--------TOCANDO PLAYLIST--------")
             self.__tela_player.quebra_linha()
-               
+
     def retornar(self):
         self.__controlador_sistema.abre_tela()
 
@@ -111,4 +105,5 @@ class ControladorPlayer:
         return lista_musicas
 
     def limpa_historico(self):
-        self.__musicas_tocadas.clear()                                 
+        self.__musicas_tocadas.clear()
+                           

@@ -11,7 +11,7 @@ class TelaAbstrata(ABC):
                     raise ValueError
                 return inteiro
             except ValueError: 
-                print("Selecione uma opcao valida")
+                print("SELECIONE UMA OPÇÃO VÁLIDA")
 
     @abstractmethod
     def tela_opcoes(self):

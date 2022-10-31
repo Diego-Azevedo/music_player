@@ -8,7 +8,7 @@ class Playlist:
     @property
     def nome(self):
         return self.__nome
-    
+
     @nome.setter
     def nome(self, nome: str):
         self.__nome = nome
@@ -16,8 +16,7 @@ class Playlist:
     @property
     def lista_musicas(self):
         return self.__lista_musicas
-    
+
     @lista_musicas.setter
     def musicas(self, lista_musicas: list[Musica]):
         self.lista_musicass = lista_musicas
-    

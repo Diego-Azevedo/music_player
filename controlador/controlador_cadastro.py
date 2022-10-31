@@ -16,15 +16,10 @@ class ControladorCadastro():
                 return musica
             return None
 
-    #__________________________________________________________________________________________________________________    
-    #MOSTRA MÚSICAS CADASTRADAS
     def ver_musica(self):
         for musica in self.__musicas:
             self.__tela_cadastro.mostra_musica({"nome": musica.nome, "artista": musica.artista,
              "genero": musica.genero, "tempo": musica.tempo })
-
-    #__________________________________________________________________________________________________________________    
-    #CADASTRAR MÚSICAS
 
     def incluir_musica(self):
         self.__tela_cadastro.mostra_mensagem("--------CADASTRAR MÚSICA--------")
@@ -34,34 +29,21 @@ class ControladorCadastro():
             self.__musicas.append(musica)
         else:
             self.__tela_cadastro.mostra_mensagem("PREENCHA TODOS OS CAMPOS \n") 
-        
 
-    #__________________________________________________________________________________________________________________
-    #EDITAR MÚSICA
     def editar_musica(self):
         self.__tela_cadastro.mostra_mensagem("--------EDITAR MÚSICA--------")
         self.ver_musica()
         nome_musica = self.__tela_cadastro.edita_musica()
         for indice in self.__musicas:
-            try:
-                if indice.nome == nome_musica:
-                    novos_dados_musica = self.__tela_cadastro.pega_dados_musica()
-                    indice.nome = novos_dados_musica["nome"]
-                    indice.artista = novos_dados_musica["artista"]
-                    indice.genero = novos_dados_musica["genero"]
-                    indice.tempo = novos_dados_musica["tempo"]
-                    self.__tela_cadastro.mostra_mensagem("MÚSICA EDITADA COM SUCESSO! \n")
-                else:
-                    raise Exception
-            except Exception:
-               self.__tela_cadastro.mostra_mensagem("A MÚSICA QUE VOCÊ TENTOU EDITAR NÃO EXISTE \n")
 
-    #__________________________________________________________________________________________________________________   
-    #EXCLUIR MÚSICA
-    '''Se sobrar tempo, 
-    tentar colocar um try/except aqui
-    
-    '''
+            if indice.nome == nome_musica:
+                novos_dados_musica = self.__tela_cadastro.pega_dados_musica()
+                indice.nome = novos_dados_musica["nome"]
+                indice.artista = novos_dados_musica["artista"]
+                indice.genero = novos_dados_musica["genero"]
+                indice.tempo = novos_dados_musica["tempo"]
+                self.__tela_cadastro.mostra_mensagem("MÚSICA EDITADA COM SUCESSO! \n")
+
     def excluir_musica(self):
         self.__tela_cadastro.mostra_mensagem("--------EXCLUIR MÚSICA--------")
         self.ver_musica()
@@ -73,9 +55,7 @@ class ControladorCadastro():
                 self.__tela_cadastro.quebra_linha()
         if indice.nome != nome_musica:
             self.__tela_cadastro.mostra_mensagem("A MÚSICA QUE VOCÊ TENTOU EXCLUIR NÃO EXISTE \n")
-            
 
-    #__________________________________________________________________________________________________________________
     def retornar(self):
         self.__controlador_sistema.abre_tela()
 
@@ -99,11 +79,10 @@ class ControladorCadastro():
 
     def retorna_objetos_musica(self):
         return self.__musicas           
-        
 
 #Musicas cadastradas
 musica0 = Musica("TôBem", "Djonga", "Rap", 3.21)
 musica1 = Musica("Hey Baby", "Stephen Marley", "Reggae", 4.54)
 musica2 = Musica("You And Me", "Soja", "Reggae", 4.50)
-musica3 = Musica("November Rain", "Guns N Roses", "Rock", 8.10)
+musica3 = Musica("After Midnight", "Eric Clapton", "Rock", 8.10)
 musica4 = Musica("505", "Arctic Monkeys", "Rock", 4.13)

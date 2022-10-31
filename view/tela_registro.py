@@ -30,5 +30,4 @@ class TelaRegistro(TelaAbstrata):
         print("1 - Continuar")
         print("0 - Salvar e Sair")
         retorno = input("Escolha a Opção: ")
-        return retorno    
-  
+        return retorno
