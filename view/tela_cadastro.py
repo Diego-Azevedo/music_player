@@ -1,18 +1,45 @@
+import PySimpleGUI as sg
+
 from view.tela_abstrata import TelaAbstrata
 
 class TelaCadastro(TelaAbstrata):
 
+
     def tela_opcoes(self):
-        print("____MÚSICA____")
-        print("Escolha a opção:")
-        print("1 - Listar Música")
-        print("2 - Cadastrar Música")
-        print("3 - Alterar Música")
-        print("4 - Excluir Música")
-        print("0 - Retornar")
-        opcao = self.ler_opcao("Escolha a opcao: ", [0, 1, 2, 3, 4])
-        print()
+        self.init_components()
+        button, values = self.__window.Read()
+        opcao = 0
+        if values['1']:
+            opcao = 1
+        if values['2']:
+            opcao = 2
+        if values['3']:
+            opcao = 3
+        if values['4']:
+            opcao = 4
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+        if values['0'] or button in (None,'Cancelar'):
+            opcao = 0
+        self.close()
         return opcao
+
+    def close(self):
+        self.__window.Close()
+
+    def init_components(self):
+        #sg.theme_previewer()
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+            [sg.Text('Player de Música', font=("Helvica",25))],
+            [sg.Text('Escolha sua opção', font=("Helvica",15))],
+            [sg.Radio('Listar Música',"RD1", key='1')],
+            [sg.Radio('Cadastras Música',"RD1", key='2')],
+            [sg.Radio('Alterar Música',"RD1", key='3')],
+            [sg.Radio('Excluir Música',"RD1", key='4')],
+            [sg.Radio('Sair',"RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('Player de Música').Layout(layout)       
 
     def pega_dados_musica(self):
         nome = input("Nome: ")
