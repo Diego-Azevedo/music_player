@@ -17,8 +17,8 @@ class TelaAbstrata(ABC):
     def tela_opcoes(self):
         pass
 
-    def dados_musica(self, index, dados_musica):
-        print(index, "-", dados_musica["nome"], "-", dados_musica["artista"])   
+    def dados_musica(self, index, nome, artista):
+        print(index, "-", nome, "-", artista)   
 
     def mostra_mensagem(self, msg):
         print(msg)

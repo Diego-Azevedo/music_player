@@ -6,7 +6,8 @@ import random
 class ControladorCadastro():
 
     def __init__(self, controlador_sistema):
-            self.__musicas = [musica0, musica1, musica2, musica3, musica4]
+            self.__musicas = [musica0, musica1, musica2, musica3, musica4,
+                              musica5, musica6, musica7, musica8, musica9]
             self.__tela_cadastro = TelaCadastro()
             self.__controlador_sistema = controlador_sistema
 
@@ -69,13 +70,11 @@ class ControladorCadastro():
 
     def retorna_musica_aleatoria(self):
         musica_aleatoria = random.choice(self.__musicas)
-        return {"nome": musica_aleatoria.nome, "artista": musica_aleatoria.artista}
+        return musica_aleatoria
 
     def retorna_musicas(self):
-        lista_musicas = []
-        for musica in self.__musicas:
-            lista_musicas.append({"nome": musica.nome, "artista": musica.artista})
-        return lista_musicas
+        musicas = self.__musicas
+        return musicas
 
     def retorna_objetos_musica(self):
         return self.__musicas           
@@ -86,3 +85,8 @@ musica1 = Musica("Hey Baby", "Stephen Marley", "Reggae", 4.54)
 musica2 = Musica("You And Me", "Soja", "Reggae", 4.50)
 musica3 = Musica("After Midnight", "Eric Clapton", "Rock", 8.10)
 musica4 = Musica("505", "Arctic Monkeys", "Rock", 4.13)
+musica5 = Musica("November Rain", "Guns N Roses", "Rock", 3.21)
+musica6 = Musica("Sweet Child O' Mine", "Guns N Roses", "Rock", 4.54)
+musica7 = Musica("Psychosocial", "Slipknot", "Rock", 4.50)
+musica8 = Musica("Unsainted", "Slipknot", "Rock", 8.10)
+musica9 = Musica("Come As You Are", "Nirvana", "Rock", 4.13)

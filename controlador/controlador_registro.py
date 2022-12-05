@@ -1,6 +1,6 @@
 from view.tela_registro import TelaRegistro
 from entidade.play_list import Playlist
-from controlador.controlador_cadastro import musica0, musica1, musica2, musica3, musica4
+from controlador.controlador_cadastro import musica5, musica6, musica7, musica8, musica9
 
 class ControladorRegistro:
     def __init__(self, controlador_sistema):
@@ -15,20 +15,6 @@ class ControladorRegistro:
         continua = True
         while continua:
             lista_opcoes[self.__tela_registro.tela_opcoes()]()
-
-    def historico_player(self):
-        historico = self.__controlador_sistema.controlador_player.retorna_musicas()
-        self.__tela_registro.mostra_mensagem("--------REGISTRO DO PLAYER--------")
-        self.__tela_registro.quebra_linha()
-        self.__tela_registro.mostra_mensagem("HISTÓRICO:")
-        for index, item in enumerate(historico):
-            self.__tela_registro.dados_musica(index, item)
-        self.__tela_registro.quebra_linha() 
-
-    def limpar_lista(self):
-        self.__controlador_sistema.controlador_player.limpa_historico()
-        self.__tela_registro.mostra_mensagem("HISTÓRICO EXCLUÍDO! \n")
-        self.__tela_registro.quebra_linha()
 
     def criar_playlist(self):
         lista_posicoes = []
@@ -64,7 +50,20 @@ class ControladorRegistro:
                 self.__tela_registro.mostra_playlist(index, nome_playlist.nome)
             posicao = self.__tela_registro.escolher_musica()
             self.__play_list.pop(posicao)
-            self.__tela_registro.mostra_mensagem("PLAYLIST EXCLUÍDA! \n")        
+            self.__tela_registro.mostra_mensagem("PLAYLIST EXCLUÍDA! \n")      
+    
+    def historico_player(self):
+        historico = self.__controlador_sistema.controlador_player.retorna_musicas()
+        self.__tela_registro.mostra_mensagem("--------REGISTRO DO PLAYER-------- \n")
+        self.__tela_registro.mostra_mensagem("HISTÓRICO:")
+        for index, item in enumerate(historico):
+            self.__tela_registro.dados_musica(index, item.nome, item.artista)
+        self.__tela_registro.quebra_linha() 
+
+    def limpar_lista(self):
+        self.__controlador_sistema.controlador_player.limpa_historico()
+        self.__tela_registro.mostra_mensagem("HISTÓRICO EXCLUÍDO! \n")
+        self.__tela_registro.quebra_linha()
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
@@ -72,4 +71,4 @@ class ControladorRegistro:
     def retorna_playlist(self):
         return self.__play_list
 
-playlist1 = Playlist("Hinos do Rock", [musica0,musica1, musica2, musica3, musica4])        
+playlist1 = Playlist("Hinos do Rock", [musica5,musica6, musica7, musica8, musica9])        
