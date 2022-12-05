@@ -18,8 +18,10 @@ class TelaPlayer(TelaAbstrata):
         print("1 - Pausar")
         print("2 - Passar Música")
         print("3 - Voltar Música")
+        print("4 - Curtir Música")
+        print("5 - Descurtir Música")
         print("0 - Sair")
-        opcao2 = self.ler_opcao("Escolha a opcao: ", [0, 1, 2, 3])
+        opcao2 = self.ler_opcao("Escolha a opcao: ", [0, 1, 2, 3, 4, 5])
         print()
         return opcao2           
 

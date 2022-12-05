@@ -32,7 +32,11 @@ class TelaRegistro(TelaAbstrata):
         print(index, "-", nome)    
 
     def mostra_musica_adicionada(self, msg, musica, mensagem, playlist):
-        print(msg, musica, mensagem, playlist)    
+        print(msg, musica, mensagem, playlist)
+
+    def mostra_registro(self, ouvidas, curtidas):
+        print("Você escutou um total de", ouvidas, "músicas, e favoritou", curtidas, "músicas.")
+        print()        
 
     def continuar(self):
         print("1 - Continuar")

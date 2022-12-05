@@ -55,7 +55,13 @@ class ControladorRegistro:
     def historico_player(self):
         historico = self.__controlador_sistema.controlador_player.retorna_musicas()
         self.__tela_registro.mostra_mensagem("--------REGISTRO DO PLAYER-------- \n")
-        self.__tela_registro.mostra_mensagem("HISTÓRICO:")
+        musicas_favortitas = self.musicas_favoritas()
+        self.__tela_registro.mostra_registro(len(historico), len(musicas_favortitas))
+        self.__tela_registro.mostra_mensagem("MÚSICAS FAVORITAS:")
+        for indice, item in enumerate(musicas_favortitas):
+            self.__tela_registro.dados_musica(indice, item.nome, item.artista)
+        self.__tela_registro.quebra_linha()
+        self.__tela_registro.mostra_mensagem("HISTÓRICO DE MÚSICAS TOCADAS:")
         for index, item in enumerate(historico):
             self.__tela_registro.dados_musica(index, item.nome, item.artista)
         self.__tela_registro.quebra_linha() 
@@ -63,7 +69,14 @@ class ControladorRegistro:
     def limpar_lista(self):
         self.__controlador_sistema.controlador_player.limpa_historico()
         self.__tela_registro.mostra_mensagem("HISTÓRICO EXCLUÍDO! \n")
-        self.__tela_registro.quebra_linha()
+
+    def musicas_favoritas(self):
+        musicas_favoritas = []
+        lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_objetos_musica()
+        for i in range (len(lista_musicas)):
+            if lista_musicas[i].gostei == True:
+                musicas_favoritas.append(lista_musicas[i])
+        return musicas_favoritas         
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()

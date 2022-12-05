@@ -65,7 +65,8 @@ class ControladorPlayer:
     def abre_tela_player(self):
         while True:
             lista_opcoes2 = {1: self.pausar_musica, 2: self.passar_musica,
-                             3: self.voltar_musica, 0:self.abre_tela}
+                             3: self.voltar_musica, 4: self.curtir_musica,
+                             5: self.descurtir_musica, 0:self.abre_tela}
             lista_opcoes2[self.__tela_player.player_opcoes()]()
 
     def abre_tela_playlist(self):
@@ -126,7 +127,13 @@ class ControladorPlayer:
         musica_atual = self.__musicas_tocadas[-1]
         self.__tela_player.pausar_musica()
         self.__tela_player.mostra_mensagem("--------TOCANDO--------")
-        self.__tela_player.mostra_musica(musica_atual.nome, musica_atual.artista)        
+        self.__tela_player.mostra_musica(musica_atual.nome, musica_atual.artista) 
+
+    def curtir_musica(self):
+        self.__musicas_tocadas[-1].gostei = True
+
+    def descurtir_musica(self):
+        self.__musicas_tocadas[-1].gostei = False           
 
     def retorna_musicas(self):
         lista_musicas = self.__musicas_tocadas
