@@ -48,7 +48,7 @@ class TelaCadastro(TelaAbstrata):
             [sg.Text('Tempo:', size=(15, 1)), sg.InputText('', key='tempo')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de livros').Layout(layout)
+        self.__window = sg.Window('Player de Música').Layout(layout)
 
         button, values = self.open()
         nome = values['nome']
