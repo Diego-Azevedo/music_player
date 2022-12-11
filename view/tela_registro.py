@@ -24,7 +24,6 @@ class TelaRegistro(TelaAbstrata):
 
 
     def init_opcoes(self):
-        #sg.theme_previewer()
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
             [sg.Text('Player de Música', font=("Helvica",25))],

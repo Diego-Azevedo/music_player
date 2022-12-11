@@ -17,14 +17,12 @@ class TelaCadastro(TelaAbstrata):
             opcao = 3
         if values['4']:
             opcao = 4
-        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
         if values['0'] or button in (None,'Cancelar'):
             opcao = 0
         self.close()
         return opcao
 
     def init_opcoes(self):
-        #sg.theme_previewer()
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
             [sg.Text('Player de Música', font=("Helvica",25))],
@@ -61,20 +59,19 @@ class TelaCadastro(TelaAbstrata):
 
 
     def mostra_musica(self, dados_musica):
-        string_todas_musicas = ""  #Ajeitar essa porra aqui________________________________________________________________________________________________
+        string_todas_musicas = ""
         for dado in dados_musica:
-            string_todas_musicas = string_todas_musicas + "MÚSICA: " + dado["nome"] + '\n'
+            string_todas_musicas = string_todas_musicas + "MÚSICA: " + str(dado["nome"]) + '\n'
             string_todas_musicas = string_todas_musicas + "ARTISTA: " + str(dado["artista"]) + '\n'
             string_todas_musicas = string_todas_musicas + "GÊNERO: " + str(dado["genero"]) + '\n\n'
             string_todas_musicas = string_todas_musicas + "TEMPO: " + str(dado["tempo"]) + '\n\n'
 
         sg.Popup('-------- LISTA DE MÚSICAS ----------', string_todas_musicas)
 
-  # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def seleciona_musica(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-        [sg.Text('-------- SELECIONAR MÚsica ----------', font=("Helvica", 25))],
+        [sg.Text('-------- SELECIONAR MÚSICA ----------', font=("Helvica", 25))],
         [sg.Text('Digite o nome da mùsica:', font=("Helvica", 15))],
         [sg.Text('NOME:', size=(15, 1)), sg.InputText('', key='nome')],
         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]

@@ -43,21 +43,6 @@ class TelaPlayer(TelaAbstrata):
         
         self.__window = sg.Window('Player de Música').Layout(layout)
 
-        #_---------------------------------------------------------------------------------------------------------------------------
-
-
-    '''def player_opcoes(self):
-        print("____PLAYER OPCÕES____")
-        print("1 - Pausar")
-        print("2 - Passar Música")
-        print("3 - Voltar Música")
-        print("4 - Curtir Música")
-        print("5 - Descurtir Música")
-        print("0 - Sair")
-        opcao2 = self.ler_opcao("Escolha a opcao: ", [0, 1, 2, 3, 4, 5])
-        print()
-        return opcao2 '''
-
     def mostra_musica(self, dados_musica):
         string_todas_musicas = "" 
         for dado in dados_musica:
@@ -66,21 +51,17 @@ class TelaPlayer(TelaAbstrata):
             string_todas_musicas = string_todas_musicas + "GÊNERO: " + str(dado["genero"]) + '\n\n'
             string_todas_musicas = string_todas_musicas + "TEMPO: " + str(dado["tempo"]) + '\n\n' 
 
-    #---------------------------------------------------------------------------------------------------------------------
     def escolhe_opcao(self):
         opcao = int(input("Escolha a Opção: "))
         return opcao
 
     def pausar_musica(self):
-        #print("--------MÚSICA PAUSADA--------")
         [sg.Text('-------- MÚSICA PAUSADA ----------', font=("Helvica", 25))],
         [sg.Radio('CLIQUE PARA CONTINUAR', "RD1", key=any)],
-        #input("CLIQUE PARA CONTINUAR: ")
         print()
 
     def dados_playlist(self, index, nome):
         print(index, "-", nome)
-    #-------------------------------------------------------------------------------------------------------------------------
 
     def mostra_mensagem(self, msg):
             sg.popup("", msg)
