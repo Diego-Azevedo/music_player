@@ -64,7 +64,7 @@ class ControladorCadastro():
         id_musica = self.__tela_cadastro.seleciona_musica()
         musica = self.pega_musica_por_id(id_musica)
         if(musica is not None):
-            self.__musica_DAO.remove(musica)
+            self.__musica_DAO.remove(musica.id)
             self.ver_musica()
         else:
             self.__tela_cadastro.mostra_mensagem("ATENCAO: música não existente")
