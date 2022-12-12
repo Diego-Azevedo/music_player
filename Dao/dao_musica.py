@@ -6,7 +6,7 @@ class MusicaDAO(DAO):
     def __init__(self):
         super().__init__('musicas.pkl')
 
-    def add(self, musica: Musica):
+    def add(self, musica: Musica): 
         if((musica is not None) and isinstance(musica, Musica)):
             super().add(musica.id, musica)
         else:
