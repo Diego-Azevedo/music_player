@@ -30,7 +30,7 @@ class DAO(ABC):
                 self.__cache[key] = obj #atualiza a entrada
                 self.__dump()  #atualiza o arquivo
         except KeyError:
-            print("ERRO DUMP DAO")
+            print("ERRO AO REALIZAR O UPDATE")
 
     def get_random(self):
         return random.choice(self.__cache)
@@ -40,7 +40,7 @@ class DAO(ABC):
             self.__cache.pop(key)
             self.__dump() #atualiza o arquivo depois de remover um objeto
         except KeyError:
-            print("NÃO PASSOU")
+            print("NÃO FOI POSSÍVEL REMOVER")
 
     def get_all(self):
         return self.__cache.values()

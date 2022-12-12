@@ -23,6 +23,8 @@ class ControladorCadastro():
         for musica in self.__musica_DAO.get_all():  
             dados_musica.append({"nome": musica.nome, "artista": musica.artista,
              "genero": musica.genero, "id": musica.id })
+        if len(dados_musica) == 0:
+            self.__tela_cadastro.mostra_mensagem("NÃO HÁ NENHUMA MÚSICA CADASTRADA")
         self.__tela_cadastro.mostra_musica(dados_musica)
         #for musica in self.__musicas:
         #for musica in self.__musica_DAO.get_all():    
@@ -40,11 +42,13 @@ class ControladorCadastro():
             self.__tela_cadastro.mostra_mensagem("PREENCHA TODOS OS CAMPOS \n") 
 
     def editar_musica(self):
+        dados_musica = []
         self.ver_musica()
         id_musica = self.__tela_cadastro.seleciona_musica()
         musica = self.pega_musica_por_id(id_musica)
-
-        if(musica is not None):
+        if len(dados_musica) == 0:
+            self.__tela_cadastro.mostra_mensagem("NÃO HÁ NENHUMA MÚSICA CADASTRADA")
+        elif(musica is not None):
             novos_dados_musica = self.__tela_cadastro.pega_dados_musica()
             musica.nome = novos_dados_musica["nome"]
             musica.artista = novos_dados_musica["artista"]
@@ -55,26 +59,21 @@ class ControladorCadastro():
             self.__tela_cadastro.mostra_mensagem("MÚSICA EDITADA COM SUCESSO! \n")
         else:
             self.__tela_cadastro.mostra_mensagem("ATENCAO: MÚSICA NÃO EXISTE \n")
-        #for indice in self.__musica_DAO.get_all():
-        #for indice in self.__musicas:
-            #if indice.nome == nome_musica:
-                #novos_dados_musica = self.__tela_cadastro.pega_dados_musica()
-                #indice.nome = novos_dados_musica["nome"]
-                #indice.artista = novos_dados_musica["artista"]
-                #indice.genero = novos_dados_musica["genero"]
-                #indice.tempo = novos_dados_musica["tempo"]
-                #self.__musica_DAO.update(indice)
-                #self.__tela_cadastro.mostra_mensagem("MÚSICA EDITADA COM SUCESSO! \n")
+
     def excluir_musica(self):
+        dados_musica = []
         self.ver_musica()
         id_musica = self.__tela_cadastro.seleciona_musica()
         musica = self.pega_musica_por_id(id_musica)
-
-        if(musica is not None):
-            self.ver_musica()
+        if len(dados_musica) == 0:
+            self.__tela_cadastro.mostra_mensagem("NÃO HÁ NENHUMA MÚSICA CADASTRADA")
+        elif(musica is not None):
             self.__musica_DAO.remove(musica)
+            self.ver_musica()
         else:
             self.__tela_cadastro.mostra_mensagem("ATENCAO: música não existente")
+
+        self.__tela_cadastro.mostra_musica(dados_musica)
         
         #for index, indice in enumerate(self.__musicas):
         #    if indice.nome == nome_musica:
@@ -112,10 +111,3 @@ class ControladorCadastro():
     def retorna_objetos_musica(self):
         return self.__musica_DAO.get_all()
         #return self.__musicas           
-
-#Musicas cadastradas
-musica5 = Musica("November Rain", "Guns N Roses", "Rock", False)
-musica6 = Musica("Sweet Child O' Mine", "Guns N Roses", "Rock", False)
-musica7 = Musica("Psychosocial", "Slipknot", "Rock", False)
-musica8 = Musica("Unsainted", "Slipknot", "Rock", False)
-musica9 = Musica("Come As You Are", "Nirvana", "Rock", False)

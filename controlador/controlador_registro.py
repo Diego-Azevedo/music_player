@@ -1,11 +1,10 @@
 from view.tela_registro import TelaRegistro
 from entidade.play_list import Playlist
-from controlador.controlador_cadastro import musica5, musica6, musica7, musica8, musica9
 
 class ControladorRegistro:
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
-        self.__play_list = [playlist1]
+        self.__play_list = []
         self.__tela_registro = TelaRegistro()
 
     def abre_tela(self):
@@ -84,5 +83,3 @@ class ControladorRegistro:
 
     def retorna_playlist(self):
         return self.__play_list
-
-playlist1 = Playlist("Hinos do Rock", [musica5,musica6, musica7, musica8, musica9])        

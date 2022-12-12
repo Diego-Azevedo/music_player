@@ -19,6 +19,7 @@ class MusicaDAO(DAO):
     def get(self):
         return super().get_random()
 
-    def remove(selfself, key: int):
+    def remove(self, key: int):
         print("AQUI")
+        #if((key is not None) and isinstance(key, MusicaDAO)):
         return super().remove(key)
