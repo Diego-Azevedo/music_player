@@ -63,6 +63,7 @@ class TelaCadastro(TelaAbstrata):
         return {"nome": nome, "artista": artista, "genero": genero, "id": id}
  
     def mostra_musica(self, dados_musica):
+        sg.ChangeLookAndFeel('DarkAmber')
         string_todas_musicas = ""
         for dado in dados_musica:
             string_todas_musicas = string_todas_musicas + "MÚSICA: " + str(dado["nome"]) + '\n'
@@ -73,7 +74,7 @@ class TelaCadastro(TelaAbstrata):
         sg.Popup('-------- LISTA DE MÚSICAS ----------', string_todas_musicas)
 
     def seleciona_musica(self):
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkAmber')
         layout = [
         [sg.Text('-------- SELECIONAR MÚSICA ----------', font=("Helvica", 25))],
         [sg.Text('Digite o ID da música:', font=("Helvica", 15))],
@@ -89,6 +90,7 @@ class TelaCadastro(TelaAbstrata):
 
 
     def mostra_mensagem(self, msg):
+        sg.ChangeLookAndFeel('DarkAmber')
         sg.popup("", msg)
 
     def close(self):
