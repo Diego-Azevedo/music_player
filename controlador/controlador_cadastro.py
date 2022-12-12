@@ -11,7 +11,6 @@ class ControladorCadastro():
             self.__tela_cadastro = TelaCadastro()
             self.__controlador_sistema = controlador_sistema
 
-
     def pega_musica_por_id(self, id: int):
         for musica in self.__musica_DAO.get_all():
             if(musica.id == id):
@@ -26,17 +25,11 @@ class ControladorCadastro():
         if len(dados_musica) == 0:
             self.__tela_cadastro.mostra_mensagem("NÃO HÁ NENHUMA MÚSICA CADASTRADA")
         self.__tela_cadastro.mostra_musica(dados_musica)
-        #for musica in self.__musicas:
-        #for musica in self.__musica_DAO.get_all():    
-        #    self.__tela_cadastro.mostra_musica({"nome": musica.nome, "artista": musica.artista,
-        #     "genero": musica.genero, "id": musica.id })
 
     def incluir_musica(self):
-
         dados_musica = self.__tela_cadastro.pega_dados_musica()
         musica = Musica(dados_musica["nome"], dados_musica["artista"], dados_musica["genero"], dados_musica["id"])
         if dados_musica["nome"] != "" and dados_musica["artista"] != "" and dados_musica["genero"] != "" and dados_musica["id"] != "":
-            #self.__musicas.append(musica)
             self.__musica_DAO.add(musica)
         else:
             self.__tela_cadastro.mostra_mensagem("PREENCHA TODOS OS CAMPOS \n") 
@@ -68,16 +61,7 @@ class ControladorCadastro():
             self.ver_musica()
         else:
             self.__tela_cadastro.mostra_mensagem("ATENCAO: música não existente")
-
         self.__tela_cadastro.mostra_musica(dados_musica)
-        
-        #for index, indice in enumerate(self.__musicas):
-        #    if indice.nome == nome_musica:
-        #        #self.__musicas.pop(index)
-        #        self.__tela_cadastro.mostra_mensagem("MÚSICA EXCLUÍDA! \n") 
-        #        self.__tela_cadastro.quebra_linha()
-        #if indice.nome != nome_musica:
-        #    self.__tela_cadastro.mostra_mensagem("A MÚSICA QUE VOCÊ TENTOU EXCLUIR NÃO EXISTE \n")
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
@@ -91,19 +75,13 @@ class ControladorCadastro():
             lista_opcoes[self.__tela_cadastro.tela_opcoes()]()
 
     def retorna_musica_aleatoria(self):
-        #musica_aleatoria = random.choice(self.__musicas)
-        #musica_aleatoria = random.choiceself.__musica_DAO.get_all()
-        #musica_aleatoria = self.__musica_DAO.get_all()
-        #a_musica_aleatoria = random.choice(musica_aleatoria)
         musica_aleatoria = self.__musica_DAO.get()
         return musica_aleatoria
 
     def retorna_musicas(self):
-        #musicas = self.__musicas
         musicas = self.__musica_DAO.get_all()
         print("PASSOU")
         return musicas
 
     def retorna_objetos_musica(self):
         return self.__musica_DAO.get_all()
-        #return self.__musicas           

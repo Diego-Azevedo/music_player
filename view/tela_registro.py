@@ -15,7 +15,6 @@ class TelaRegistro(TelaAbstrata):
             opcao = 3
         if values['4']:
             opcao = 4
-        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
         if values['0'] or button in (None,'Cancelar'):
             opcao = 0
         self.close()
@@ -25,7 +24,6 @@ class TelaRegistro(TelaAbstrata):
         self.__window.Close()
 
     def init_components(self):
-        #sg.theme_previewer()
         sg.ChangeLookAndFeel('DarkAmber')
         layout = [
             [sg.Text('Player de Música', font=("Helvica",25))],
@@ -69,3 +67,7 @@ class TelaRegistro(TelaAbstrata):
         print("0 - Salvar e Sair")
         retorno = input("Escolha a Opção: ")
         return retorno
+
+    def mostra_mensagem(self, msg):
+        sg.ChangeLookAndFeel('DarkAmber')
+        sg.popup("", msg)

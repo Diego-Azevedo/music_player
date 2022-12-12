@@ -25,7 +25,6 @@ class ControladorPlayer:
         opcao_escolhida = self.__tela_player.escolhe_opcao()     
         try:
             if opcao_escolhida <= index:
-                
                 self.__tela_player.quebra_linha()
                 self.__tela_player.mostra_mensagem("--------TOCANDO--------")
                 self.__tela_player.mostra_musica(lista_musicas[opcao_escolhida].nome, lista_musicas[opcao_escolhida].artista)
@@ -33,7 +32,6 @@ class ControladorPlayer:
                 self.__registro_DAO.add(lista_musicas[opcao_escolhida])
                 self.abre_tela_player()            
             else:
-
                 raise KeyError
         except KeyError:
             self.__tela_player.mostra_mensagem("ESCOLHA UMA MÚSICA VÁLIDA \n")
@@ -73,14 +71,14 @@ class ControladorPlayer:
             lista_opcoes2 = {1: self.pausar_musica, 2: self.passar_musica,
                              3: self.voltar_musica, 4: self.curtir_musica,
                              5: self.descurtir_musica, 0:self.abre_tela}
-            lista_opcoes2[self.__tela_player.player_opcoes()]()
+            lista_opcoes2[self.__tela_player.tela_opcoes_player()]()
 
     def abre_tela_playlist(self):
         while True:
             lista_opcoes3 = {1: self.pausar_musica, 2: self.passar_musica_playlist,
                              3: self.voltar_musica_playlist, 4: self.curtir_musica,
                              5: self.descurtir_musica, 0:self.abre_tela}
-            lista_opcoes3[self.__tela_player.player_opcoes()]()                                 
+            lista_opcoes3[self.__tela_player.tela_opcoes_player()]()                                 
 
     def passar_musica(self):
         lista_musicas = list(self.__controlador_sistema.controlador_cadastro.retorna_musicas())
@@ -149,9 +147,7 @@ class ControladorPlayer:
     def retorna_musicas(self):
         lista_registro = self.__registro_DAO.get_all()
         return lista_registro   
-        #lista_musicas = self.__musicas_tocadas
-        #return lista_musicas
-        
+
     def excluir_registro(self):
         for registro in self.__registro_DAO.get_all():
             del registro
@@ -160,5 +156,3 @@ class ControladorPlayer:
         self.__musicas_tocadas.clear()
         self.excluir_registro()
         os.remove("registro.pkl")
-        #self.__registro_DAO.clear()
-                           

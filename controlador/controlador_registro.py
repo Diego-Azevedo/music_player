@@ -50,7 +50,7 @@ class ControladorRegistro:
             posicao = self.__tela_registro.escolher_musica()
             self.__play_list.pop(posicao)
             self.__tela_registro.mostra_mensagem("PLAYLIST EXCLUÍDA! \n")      
-    
+
     def historico_player(self):
         historico = list(self.__controlador_sistema.controlador_player.retorna_musicas())
         self.__tela_registro.mostra_mensagem("--------REGISTRO DO PLAYER-------- \n")

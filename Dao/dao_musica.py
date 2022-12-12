@@ -1,7 +1,6 @@
 from Dao.dao import DAO
 from entidade.musica import Musica
 
-#cada entidade terá uma classe dessa, implementação bem simples.
 class MusicaDAO(DAO):
     def __init__(self):
         super().__init__('musicas.pkl')

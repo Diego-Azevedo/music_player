@@ -1,4 +1,3 @@
-
 from view.tela_sistema import TelaInicial
 from controlador.controlador_cadastro import ControladorCadastro
 from controlador.controlador_player import ControladorPlayer

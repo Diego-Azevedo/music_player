@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
 class TelaAbstrata(ABC):
-
     def ler_opcao(self, mensagem: str = "", inteiros_validos: [] = None):
         while True:
             valor_lido = input(mensagem)

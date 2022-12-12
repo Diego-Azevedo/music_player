@@ -16,7 +16,6 @@ class TelaInicial(TelaAbstrata):
             opcao = 2
         if values['3']:
             opcao = 3
-        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
         if values['0'] or button in (None,'Sair'):
             opcao = 0
         self.close()
@@ -26,7 +25,6 @@ class TelaInicial(TelaAbstrata):
         self.__window.Close()
 
     def init_components(self):
-        #sg.theme_previewer()
         sg.ChangeLookAndFeel('DarkAmber')
         layout = [
             [sg.Text('Player de Música', font=("Helvica",25))],
