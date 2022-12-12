@@ -33,7 +33,8 @@ class DAO(ABC):
             print("ERRO AO REALIZAR O UPDATE")
 
     def get_random(self):
-        return random.choice(self.__cache)
+        variavel = self.__cache['2']
+        return variavel
        
     def remove(self, key):
         try:
