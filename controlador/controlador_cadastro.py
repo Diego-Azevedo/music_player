@@ -46,9 +46,7 @@ class ControladorCadastro():
         self.ver_musica()
         id_musica = self.__tela_cadastro.seleciona_musica()
         musica = self.pega_musica_por_id(id_musica)
-        if len(dados_musica) == 0:
-            self.__tela_cadastro.mostra_mensagem("NÃO HÁ NENHUMA MÚSICA CADASTRADA")
-        elif(musica is not None):
+        if(musica is not None):
             novos_dados_musica = self.__tela_cadastro.pega_dados_musica()
             musica.nome = novos_dados_musica["nome"]
             musica.artista = novos_dados_musica["artista"]
@@ -65,9 +63,7 @@ class ControladorCadastro():
         self.ver_musica()
         id_musica = self.__tela_cadastro.seleciona_musica()
         musica = self.pega_musica_por_id(id_musica)
-        if len(dados_musica) == 0:
-            self.__tela_cadastro.mostra_mensagem("NÃO HÁ NENHUMA MÚSICA CADASTRADA")
-        elif(musica is not None):
+        if(musica is not None):
             self.__musica_DAO.remove(musica)
             self.ver_musica()
         else:

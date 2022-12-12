@@ -27,7 +27,7 @@ class TelaInicial(TelaAbstrata):
 
     def init_components(self):
         #sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkAmber')
         layout = [
             [sg.Text('Player de Música', font=("Helvica",25))],
             [sg.Text('Escolha sua opção', font=("Helvica",15))],

@@ -28,7 +28,7 @@ class TelaCadastro(TelaAbstrata):
 
     def init_components(self):
         #sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkAmber')
         layout = [
             [sg.Text('Player de Música', font=("Helvica",25))],
             [sg.Text('Escolha sua opção', font=("Helvica",15))],
@@ -42,7 +42,7 @@ class TelaCadastro(TelaAbstrata):
         self.__window = sg.Window('Player de Música').Layout(layout)       
 
     def pega_dados_musica(self):
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkAmber')
         layout = [
             [sg.Text('-------- DADOS MÚSICA ----------', font=("Helvica", 25))],
             [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],

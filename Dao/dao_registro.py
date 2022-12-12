@@ -15,3 +15,6 @@ class RegistroDAO(DAO):
     def remove(selfself, key: int):
         print("AQUI")
         return super().remove(key)
+
+    def random(self):
+        return super().get_random()
