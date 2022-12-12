@@ -19,7 +19,7 @@ class ControladorRegistro:
     def criar_playlist(self):
         lista_posicoes = []
         nome_playlist = self.__tela_registro.nome_playlist()
-        lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_objetos_musica()
+        lista_musicas = list(self.__controlador_sistema.controlador_cadastro.retorna_objetos_musica())
         self.__tela_registro.mostra_mensagem("--------MONTAR PLAYLIST--------")
         self.__tela_registro.quebra_linha()
         self.__tela_registro.mostra_mensagem("Escolha as Músicas:")
@@ -53,7 +53,7 @@ class ControladorRegistro:
             self.__tela_registro.mostra_mensagem("PLAYLIST EXCLUÍDA! \n")      
     
     def historico_player(self):
-        historico = self.__controlador_sistema.controlador_player.retorna_musicas()
+        historico = list(self.__controlador_sistema.controlador_player.retorna_musicas())
         self.__tela_registro.mostra_mensagem("--------REGISTRO DO PLAYER-------- \n")
         musicas_favortitas = self.musicas_favoritas()
         self.__tela_registro.mostra_registro(len(historico), len(musicas_favortitas))
@@ -69,10 +69,11 @@ class ControladorRegistro:
     def limpar_lista(self):
         self.__controlador_sistema.controlador_player.limpa_historico()
         self.__tela_registro.mostra_mensagem("HISTÓRICO EXCLUÍDO! \n")
+        exit()
 
     def musicas_favoritas(self):
         musicas_favoritas = []
-        lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_objetos_musica()
+        lista_musicas = list(self.__controlador_sistema.controlador_cadastro.retorna_objetos_musica())
         for i in range (len(lista_musicas)):
             if lista_musicas[i].gostei == True:
                 musicas_favoritas.append(lista_musicas[i])

@@ -1,14 +1,14 @@
 import PySimpleGUI as sg
+
 from view.tela_abstrata import TelaAbstrata
 
 class TelaCadastro(TelaAbstrata):
-    def __init__(self):
-        self.__window = None
-        self.init_opcoes()
+
 
     def tela_opcoes(self):
-        self.init_opcoes()
-        button, values = self.open()
+        self.init_components()
+        button, values = self.__window.Read()
+        opcao = 0
         if values['1']:
             opcao = 1
         if values['2']:
@@ -17,12 +17,17 @@ class TelaCadastro(TelaAbstrata):
             opcao = 3
         if values['4']:
             opcao = 4
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
         if values['0'] or button in (None,'Cancelar'):
             opcao = 0
         self.close()
         return opcao
 
-    def init_opcoes(self):
+    def close(self):
+        self.__window.Close()
+
+    def init_components(self):
+        #sg.theme_previewer()
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
             [sg.Text('Player de Música', font=("Helvica",25))],
@@ -43,7 +48,7 @@ class TelaCadastro(TelaAbstrata):
             [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
             [sg.Text('Artista:', size=(15, 1)), sg.InputText('', key='artista')],
             [sg.Text('Gênero:', size=(15, 1)), sg.InputText('', key='genero')],
-            [sg.Text('Tempo:', size=(15, 1)), sg.InputText('', key='tempo')],
+            [sg.Text('Id:', size=(15, 1)), sg.InputText('', key='id')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Player de Música').Layout(layout)
@@ -52,19 +57,18 @@ class TelaCadastro(TelaAbstrata):
         nome = values['nome']
         artista = values['artista']
         genero = values['genero']
-        tempo = values['tempo']
+        id = values['id']
 
         self.close()
-        return {"nome": nome, "artista": artista, "genero": genero, "tempo": tempo}
-
-
+        return {"nome": nome, "artista": artista, "genero": genero, "id": id}
+ 
     def mostra_musica(self, dados_musica):
         string_todas_musicas = ""
         for dado in dados_musica:
             string_todas_musicas = string_todas_musicas + "MÚSICA: " + str(dado["nome"]) + '\n'
             string_todas_musicas = string_todas_musicas + "ARTISTA: " + str(dado["artista"]) + '\n'
-            string_todas_musicas = string_todas_musicas + "GÊNERO: " + str(dado["genero"]) + '\n\n'
-            string_todas_musicas = string_todas_musicas + "TEMPO: " + str(dado["tempo"]) + '\n\n'
+            string_todas_musicas = string_todas_musicas + "GÊNERO: " + str(dado["genero"]) + '\n'
+            string_todas_musicas = string_todas_musicas + "ID: " + str(dado["id"]) + '\n\n'
 
         sg.Popup('-------- LISTA DE MÚSICAS ----------', string_todas_musicas)
 
@@ -72,8 +76,8 @@ class TelaCadastro(TelaAbstrata):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
         [sg.Text('-------- SELECIONAR MÚSICA ----------', font=("Helvica", 25))],
-        [sg.Text('Digite o nome da mùsica:', font=("Helvica", 15))],
-        [sg.Text('NOME:', size=(15, 1)), sg.InputText('', key='nome')],
+        [sg.Text('Digite o ID da música:', font=("Helvica", 15))],
+        [sg.Text('ID:', size=(15, 1)), sg.InputText('', key='nome')],
         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Seleciona musica').Layout(layout)
@@ -82,6 +86,7 @@ class TelaCadastro(TelaAbstrata):
         nome = values['nome']
         self.close()
         return nome
+
 
     def mostra_mensagem(self, msg):
         sg.popup("", msg)
@@ -92,3 +97,16 @@ class TelaCadastro(TelaAbstrata):
     def open(self):
         button, values = self.__window.Read()
         return button, values
+
+#__________________________________________________________________      
+    '''def mostra_nome_musica(self, nome):
+        print("MÚSICA:", nome["nome"])
+        print()    
+
+    def exclui_musica(self):
+        id = input("ID DA MÚSICA QUE DESEJA EXCLUIR: ")
+        return id
+
+    def edita_musica(self):
+        id = int(input("ID DA MÚSICA QUE DESEJA EDITAR: "))
+        return id'''

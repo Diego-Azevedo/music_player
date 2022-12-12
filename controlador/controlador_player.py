@@ -1,9 +1,12 @@
 from entidade.musica import Musica
 from view.tela_player import TelaPlayer
+from Dao.dao_registro import RegistroDAO
+import os
 
 class ControladorPlayer:
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
+        self.__registro_DAO = RegistroDAO()
         self.__musicas_tocadas = []
         self.__tela_player = TelaPlayer()
         self.__playlist_atual = None
@@ -15,7 +18,7 @@ class ControladorPlayer:
             lista_opcoes[self.__tela_player.tela_opcoes()]()
 
     def escolher_musica(self):
-        lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_musicas()
+        lista_musicas = list(self.__controlador_sistema.controlador_cadastro.retorna_musicas())
         self.__tela_player.mostra_mensagem("--------ESCOLHER MÚSICA--------")
         for index, item in enumerate(lista_musicas):
             self.__tela_player.dados_musica(index, item.nome, item.artista)
@@ -27,6 +30,7 @@ class ControladorPlayer:
                 self.__tela_player.mostra_mensagem("--------TOCANDO--------")
                 self.__tela_player.mostra_musica(lista_musicas[opcao_escolhida].nome, lista_musicas[opcao_escolhida].artista)
                 self.__musicas_tocadas.append(lista_musicas[opcao_escolhida])
+                self.__registro_DAO.add(lista_musicas[opcao_escolhida])
                 self.abre_tela_player()            
             else:
 
@@ -37,8 +41,9 @@ class ControladorPlayer:
     def tocar_musica_aleatoria(self):
         musica_aleatoria = self.__controlador_sistema.controlador_cadastro.retorna_musica_aleatoria()
         self.__tela_player.mostra_mensagem("--------TOCANDO--------")
-        self.__tela_player.mostra_musica(musica_aleatoria.nome, musica_aleatoria.artista)
+        self.__tela_player.mostra_musica(musica_aleatoria.nome, musica_aleatoria.artista)  
         self.__musicas_tocadas.append(musica_aleatoria)
+        self.__registro_DAO.add(musica_aleatoria)
         self.abre_tela_player()
 
     def tocar_playlist(self):
@@ -57,6 +62,7 @@ class ControladorPlayer:
             self.__tela_player.mostra_mensagem("--------TOCANDO PLAYLIST--------")
             self.__tela_player.mostra_musica(playlist_escolhida.lista_musicas[0].nome, playlist_escolhida.lista_musicas[0].artista)
             self.__musicas_tocadas.append(playlist_escolhida.lista_musicas[0])
+            self.__registro_DAO.add(playlist_escolhida.lista_musicas[0])
             self.abre_tela_playlist()
 
     def retornar(self):
@@ -72,11 +78,12 @@ class ControladorPlayer:
     def abre_tela_playlist(self):
         while True:
             lista_opcoes3 = {1: self.pausar_musica, 2: self.passar_musica_playlist,
-                             3: self.voltar_musica_playlist, 0:self.abre_tela}
+                             3: self.voltar_musica_playlist, 4: self.curtir_musica,
+                             5: self.descurtir_musica, 0:self.abre_tela}
             lista_opcoes3[self.__tela_player.player_opcoes()]()                                 
 
     def passar_musica(self):
-        lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_musicas()
+        lista_musicas = list(self.__controlador_sistema.controlador_cadastro.retorna_musicas())
         musica_atual = self.__musicas_tocadas[-1]
         for index, musica in enumerate(lista_musicas):
             if musica.nome == musica_atual.nome:
@@ -86,6 +93,7 @@ class ControladorPlayer:
         self.__tela_player.mostra_mensagem("--------TOCANDO--------")        
         self.__tela_player.mostra_musica(lista_musicas[n+1].nome, lista_musicas[n+1].artista)
         self.__musicas_tocadas.append(lista_musicas[n+1])
+        self.__registro_DAO.add(lista_musicas[n+1])
 
     def passar_musica_playlist(self):
         playlist_atual = self.__playlist_atual
@@ -97,10 +105,11 @@ class ControladorPlayer:
             n = 0
         self.__tela_player.mostra_mensagem("--------TOCANDO PLAYLIST--------")                   
         self.__tela_player.mostra_musica(playlist_atual.lista_musicas[n+1].nome, playlist_atual.lista_musicas[n+1].artista)
-        self.__musicas_tocadas.append(playlist_atual.lista_musicas[n+1])                    
+        self.__musicas_tocadas.append(playlist_atual.lista_musicas[n+1])
+        self.__registro_DAO.add(playlist_atual.lista_musicas[n+1])                    
 
     def voltar_musica(self):
-        lista_musicas = self.__controlador_sistema.controlador_cadastro.retorna_musicas()
+        lista_musicas = list(self.__controlador_sistema.controlador_cadastro.retorna_musicas())
         musica_atual = self.__musicas_tocadas[-1]
         for index, musica in enumerate(lista_musicas):
             if musica.nome == musica_atual.nome:
@@ -110,6 +119,7 @@ class ControladorPlayer:
         self.__tela_player.mostra_mensagem("--------TOCANDO--------")        
         self.__tela_player.mostra_musica(lista_musicas[n-1].nome, lista_musicas[n-1].artista)
         self.__musicas_tocadas.append(lista_musicas[n-1])
+        self.__registro_DAO.add(lista_musicas[n-1]) 
 
     def voltar_musica_playlist(self):
         playlist_atual = self.__playlist_atual
@@ -121,7 +131,8 @@ class ControladorPlayer:
             n = len(playlist_atual.lista_musicas)
         self.__tela_player.mostra_mensagem("--------TOCANDO PLAYLIST--------")                   
         self.__tela_player.mostra_musica(playlist_atual.lista_musicas[n-1].nome, playlist_atual.lista_musicas[n-1].artista)
-        self.__musicas_tocadas.append(playlist_atual.lista_musicas[n-1])                                
+        self.__musicas_tocadas.append(playlist_atual.lista_musicas[n-1])
+        self.__registro_DAO.add(playlist_atual.lista_musicas[n-1])                                
 
     def pausar_musica(self):
         musica_atual = self.__musicas_tocadas[-1]
@@ -136,9 +147,18 @@ class ControladorPlayer:
         self.__musicas_tocadas[-1].gostei = False           
 
     def retorna_musicas(self):
-        lista_musicas = self.__musicas_tocadas
-        return lista_musicas
+        lista_registro = self.__registro_DAO.get_all()
+        return lista_registro   
+        #lista_musicas = self.__musicas_tocadas
+        #return lista_musicas
+        
+    def excluir_registro(self):
+        for registro in self.__registro_DAO.get_all():
+            del registro
 
     def limpa_historico(self):
         self.__musicas_tocadas.clear()
+        self.excluir_registro()
+        os.remove("registro.pkl")
+        #self.__registro_DAO.clear()
                            

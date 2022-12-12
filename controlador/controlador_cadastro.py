@@ -1,68 +1,88 @@
 from re import M
 from entidade.musica import Musica
 from view.tela_cadastro import TelaCadastro
+from Dao.dao_musica import MusicaDAO
 import random
 
 class ControladorCadastro():
 
     def __init__(self, controlador_sistema):
-            self.__musicas = [musica0, musica1, musica2, musica3, musica4,
-                              musica5, musica6, musica7, musica8, musica9]
+            self.__musica_DAO = MusicaDAO()
             self.__tela_cadastro = TelaCadastro()
             self.__controlador_sistema = controlador_sistema
 
-    def pega_musica_por_nome(self, nome: str):
-        for musica in self.__musicas:
-            if(musica.nome == nome):
+
+    def pega_musica_por_id(self, id: int):
+        for musica in self.__musica_DAO.get_all():
+            if(musica.id == id):
                 return musica
         return None
 
     def ver_musica(self):
         dados_musica = [] 
-        for musica in self.__musicas:
+        for musica in self.__musica_DAO.get_all():  
             dados_musica.append({"nome": musica.nome, "artista": musica.artista,
-             "genero": musica.genero, "tempo": musica.tempo })
+             "genero": musica.genero, "id": musica.id })
         self.__tela_cadastro.mostra_musica(dados_musica)
-
-    '''def incluir_musica(self):
-        self.__tela_cadastro.mostra_mensagem("--------CADASTRAR MÚSICA--------")
-        dados_musica = self.__tela_cadastro.pega_dados_musica()
-        musica = Musica(dados_musica["nome"], dados_musica["artista"], dados_musica["genero"], dados_musica["tempo"])
-        if dados_musica["nome"] != "" and dados_musica["artista"] != "" and dados_musica["genero"] != "" and dados_musica["tempo"] != "":
-            self.__musicas.append(musica)
-        else:
-            self.__tela_cadastro.mostra_mensagem("PREENCHA TODOS OS CAMPOS \n")'''
+        #for musica in self.__musicas:
+        #for musica in self.__musica_DAO.get_all():    
+        #    self.__tela_cadastro.mostra_musica({"nome": musica.nome, "artista": musica.artista,
+        #     "genero": musica.genero, "id": musica.id })
 
     def incluir_musica(self):
+
         dados_musica = self.__tela_cadastro.pega_dados_musica()
-        musica = Musica(dados_musica["nome"], dados_musica["artista"], dados_musica["genero"], dados_musica["tempo"])
-        self.__musicas.append(musica)
+        musica = Musica(dados_musica["nome"], dados_musica["artista"], dados_musica["genero"], dados_musica["id"])
+        if dados_musica["nome"] != "" and dados_musica["artista"] != "" and dados_musica["genero"] != "" and dados_musica["id"] != "":
+            #self.__musicas.append(musica)
+            self.__musica_DAO.add(musica)
+        else:
+            self.__tela_cadastro.mostra_mensagem("PREENCHA TODOS OS CAMPOS \n") 
 
     def editar_musica(self):
         self.ver_musica()
-        nome = self.__tela_cadastro.seleciona_musica()
-        musica = self.pega_musica_por_nome(nome)
+        id_musica = self.__tela_cadastro.seleciona_musica()
+        musica = self.pega_musica_por_id(id_musica)
 
         if(musica is not None):
             novos_dados_musica = self.__tela_cadastro.pega_dados_musica()
             musica.nome = novos_dados_musica["nome"]
             musica.artista = novos_dados_musica["artista"]
             musica.genero = novos_dados_musica["genero"]
-            musica.tempo = novos_dados_musica['tempo']
+            musica.id = novos_dados_musica["id"]
             self.ver_musica()
+            self.__musica_DAO.update(musica)
+            self.__tela_cadastro.mostra_mensagem("MÚSICA EDITADA COM SUCESSO! \n")
         else:
-            self.__tela_cadastro.mostra_mensagem("ATENCAO: música não existente")
-
+            self.__tela_cadastro.mostra_mensagem("ATENCAO: MÚSICA NÃO EXISTE \n")
+        #for indice in self.__musica_DAO.get_all():
+        #for indice in self.__musicas:
+            #if indice.nome == nome_musica:
+                #novos_dados_musica = self.__tela_cadastro.pega_dados_musica()
+                #indice.nome = novos_dados_musica["nome"]
+                #indice.artista = novos_dados_musica["artista"]
+                #indice.genero = novos_dados_musica["genero"]
+                #indice.tempo = novos_dados_musica["tempo"]
+                #self.__musica_DAO.update(indice)
+                #self.__tela_cadastro.mostra_mensagem("MÚSICA EDITADA COM SUCESSO! \n")
     def excluir_musica(self):
         self.ver_musica()
-        nome_musica = self.__tela_cadastro.seleciona_musica()
-        musica = self.pega_musica_por_nome(nome_musica)
+        id_musica = self.__tela_cadastro.seleciona_musica()
+        musica = self.pega_musica_por_id(id_musica)
 
         if(musica is not None):
-            self.__musicas.remove(musica)
             self.ver_musica()
+            self.__musica_DAO.remove(musica)
         else:
             self.__tela_cadastro.mostra_mensagem("ATENCAO: música não existente")
+        
+        #for index, indice in enumerate(self.__musicas):
+        #    if indice.nome == nome_musica:
+        #        #self.__musicas.pop(index)
+        #        self.__tela_cadastro.mostra_mensagem("MÚSICA EXCLUÍDA! \n") 
+        #        self.__tela_cadastro.quebra_linha()
+        #if indice.nome != nome_musica:
+        #    self.__tela_cadastro.mostra_mensagem("A MÚSICA QUE VOCÊ TENTOU EXCLUIR NÃO EXISTE \n")
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
@@ -76,24 +96,26 @@ class ControladorCadastro():
             lista_opcoes[self.__tela_cadastro.tela_opcoes()]()
 
     def retorna_musica_aleatoria(self):
-        musica_aleatoria = random.choice(self.__musicas)
+        #musica_aleatoria = random.choice(self.__musicas)
+        #musica_aleatoria = random.choiceself.__musica_DAO.get_all()
+        #musica_aleatoria = self.__musica_DAO.get_all()
+        #a_musica_aleatoria = random.choice(musica_aleatoria)
+        musica_aleatoria = self.__musica_DAO.get()
         return musica_aleatoria
 
     def retorna_musicas(self):
-        musicas = self.__musicas
+        #musicas = self.__musicas
+        musicas = self.__musica_DAO.get_all()
+        print("PASSOU")
         return musicas
 
     def retorna_objetos_musica(self):
-        return self.__musicas           
+        return self.__musica_DAO.get_all()
+        #return self.__musicas           
 
 #Musicas cadastradas
-musica0 = Musica("TôBem", "Djonga", "Rap", 3.21)
-musica1 = Musica("Hey Baby", "Stephen Marley", "Reggae", 4.54)
-musica2 = Musica("You And Me", "Soja", "Reggae", 4.50)
-musica3 = Musica("After Midnight", "Eric Clapton", "Rock", 8.10)
-musica4 = Musica("505", "Arctic Monkeys", "Rock", 4.13)
-musica5 = Musica("November Rain", "Guns N Roses", "Rock", 3.21)
-musica6 = Musica("Sweet Child O' Mine", "Guns N Roses", "Rock", 4.54)
-musica7 = Musica("Psychosocial", "Slipknot", "Rock", 4.50)
-musica8 = Musica("Unsainted", "Slipknot", "Rock", 8.10)
-musica9 = Musica("Come As You Are", "Nirvana", "Rock", 4.13)
+musica5 = Musica("November Rain", "Guns N Roses", "Rock", False)
+musica6 = Musica("Sweet Child O' Mine", "Guns N Roses", "Rock", False)
+musica7 = Musica("Psychosocial", "Slipknot", "Rock", False)
+musica8 = Musica("Unsainted", "Slipknot", "Rock", False)
+musica9 = Musica("Come As You Are", "Nirvana", "Rock", False)

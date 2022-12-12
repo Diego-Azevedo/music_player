@@ -1,9 +1,9 @@
 class Musica:
-    def __init__(self, nome: str, artista: str, genero: str, tempo: float, gostei = False): #lembrar de mudar o genero para abstract
+    def __init__(self, nome: str, artista: str, genero: str, id: int, gostei = False): #lembrar de mudar o genero para abstract
         self.__nome = nome
         self.__artista = artista
         self.__genero = genero
-        self.__tempo = tempo
+        self.__id = id
         self.__gostei = gostei
 
     @property
@@ -31,12 +31,12 @@ class Musica:
         self.__genero = genero
 
     @property
-    def tempo(self):
-        return self.__tempo
+    def id(self):
+        return self.__id
 
-    @tempo.setter
-    def tempo(self, tempo: float):
-        self.__tempo = tempo
+    @id.setter
+    def id(self, id: int):
+        self.__id = id
 
     @property
     def gostei(self):
