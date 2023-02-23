@@ -10,22 +10,23 @@ Paradigma aplicado: **orientado a objetos**
 
 Padrão de projeto: **MVC** (Model-View-Controller)
 
-Interface gráfica: **PySimpleGui
+Interface gráfica: **PySimpleGui**
 
 **Dados persistentes**
 
-#UML
+# UML
 
 ![uml_pleyer_musica drawio](https://user-images.githubusercontent.com/69559167/220797063-875bb109-a6b3-4c53-832d-8ea052afad59.png)
 
-#Exemplos de telas
+# Exemplos de telas
 
 ![telas](https://user-images.githubusercontent.com/69559167/220800249-9aa6bbf1-5ab2-4ccf-a4ec-b52f3159d06b.png)
 
-#Autores
+# Autores
 
 **Diego Becker de Azevedo**
-**oaopedrotheodoro**
+
+**Joao Pedro Theodoro**
 
 
 
